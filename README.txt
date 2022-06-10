@@ -1,7 +1,4 @@
-
-
-# Responsr Integration template project
-
+#Responsr Integration template project
 
 ------------------------------------------------------------------------------------
 # Version 1.01
