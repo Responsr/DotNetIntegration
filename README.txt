@@ -1,10 +1,10 @@
 
 
-Responsr Integration template project
+# Responsr Integration template project
 
 
 ------------------------------------------------------------------------------------
-Version 1.01
+# Version 1.01
 ------------------------------------------------------------------------------------
 
 This template is created to make it very simple to integrate any application to Responsr.
@@ -15,7 +15,7 @@ send bookings from a database, but the template works as well with API calls.
 It is created as a Console Application that can be triggered by a Scheduled Task.
 
 ------------------------------------------------------------------------------------
-Context
+# Context
 ------------------------------------------------------------------------------------
 
 Responsr is a customer loyalty software. To work it needs customer transactions sent
@@ -48,7 +48,7 @@ Install the following packages:
 *  Newtonsoft.Json
 
 ------------------------------------------------------------------------------------
-Key concepts
+# Key concepts
 ------------------------------------------------------------------------------------
 
 PartnerKey:		
@@ -67,7 +67,7 @@ You send data when something is finished, such as when someone checked out of a 
 when they left the restaurant or when the customer service ticket is closed.
 
 ------------------------------------------------------------------------------------
-What data and formats
+# What data and formats
 ------------------------------------------------------------------------------------
 
 Each interaction is centered around a Person. This is the end Customer.
@@ -103,7 +103,7 @@ Examples from Customer Service integration:
 * tags
 
 ------------------------------------------------------------------------------------
-Debuging and logging
+# Debuging and logging
 ------------------------------------------------------------------------------------
 
 The application will automatically log some events and there is a structure for easy
@@ -129,7 +129,7 @@ Debug("YOUR MESSAGE HERE");
 
 
 ------------------------------------------------------------------------------------
-VERSION HISTORY
+# VERSION HISTORY
 ------------------------------------------------------------------------------------
 1.0		Initial version
 1.01	Added README, log and debug functionality
