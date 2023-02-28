@@ -1,7 +1,7 @@
 #Responsr Integration template project
 
 ------------------------------------------------------------------------------------
-# Version 1.01
+# Version 1.02
 ------------------------------------------------------------------------------------
 
 This template is created to make it very simple to integrate any application to Responsr.
@@ -128,5 +128,6 @@ Debug("YOUR MESSAGE HERE");
 ------------------------------------------------------------------------------------
 # VERSION HISTORY
 ------------------------------------------------------------------------------------
-1.0		Initial version
+1.0	Initial version
 1.01	Added README, log and debug functionality
+1.02	Updated for v2 of nuget package

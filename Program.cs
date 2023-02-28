@@ -9,7 +9,7 @@ using Dapper;
 
 /* 
  *  -------------------------------------------------------- 
- *  Responsr Integration template project V1.01
+ *  Responsr Integration template project V1.02
  *  --------------------------------------------------------
  *  
  *  TL;DR:
@@ -48,18 +48,18 @@ namespace SendToResponsr
         {
             // Create somewhere to log and check for tries to debug the application
             _logger = new Logger(ConfigurationManager.AppSettings["LogFolderPath"]);
-            _debug = (args.Contains("help") || args.Contains("debug") || args.Contains("verbose") || ConfigurationManager.AppSettings["Debug"].ToLower == "true") ? true : false;
+            _debug = (args.Contains("help") || args.Contains("debug") || args.Contains("verbose") || ConfigurationManager.AppSettings["Debug"].ToLower() == "true") ? true : false;
 
             // Create a batchrunner to send data to Responsr, this part is standard
-            var batchRunner = new ProductionBatchRunner(new BatchRetriever(), new Guid(ConfigurationManager.AppSettings["PartnerKey"]), ConfigurationManager.AppSettings["LogFolderPath"]);
-            batchRunner.RunBatch();
+            var batchRunner = new TransactionBatchRunner(new BatchRetriever(), new Guid(ConfigurationManager.AppSettings["PartnerKey"]), ConfigurationManager.AppSettings["LogFolderPath"], ResponsrEnvironment.Production);
+            batchRunner.Run();
 
             Debug("Application finished");
         }
 
-        private class BatchRetriever : IBatchRetriever
+        private class BatchRetriever : ITransactionBatchRetriever
         {
-            public PartnerIntegrationBatchModel RetrieveBatch(DateTime recommendedBatchRetrievalTimestamp, List<PartnerClientInfoModel> clients, List<PartnerVariableInfoModel> variables)
+            public TransactionBatch Retrieve(DateTime recommendedBatchRetrievalTimestamp, List<ClientInfo> clients, List<VariableInfo> variables)
             {
                 /*          -----------------------------------------------------------------------------------------
                  *          THIS IS A SAMPLE IMPLEMENTATION OF INTEGRATION TO YOUR SYSTEM
@@ -75,9 +75,9 @@ namespace SendToResponsr
 
                 // Gets a list of all clients currently using Responsr, this is populated by responsr
                 // We will not send data to clients who are using Responsr in demo mode only.
-                var responsrClients = new List<PartnerBatchClientModel>();
+                var responsrClients = new List<ClientTransactionsData>();
                 foreach (var client in clients.Where(x => !x.IsInDemoMode)) {
-                    var responsrClient = new PartnerBatchClientModel { ClientId = client.ClientId, Persons = new List<PersonInBatchModel>() };
+                    var responsrClient = new ClientTransactionsData { ClientId = client.ClientId, Persons = new List<PersonTransactionData>() };
 
                     _logger.LogInformation("Found client: " + client.ClientId);
 
@@ -118,7 +118,7 @@ namespace SendToResponsr
                         _logger.LogInformation("Found booking: " + booking.BookingReference);
 
                         // Add a person to be sent to responsr
-                        responsrClient.Persons.Add(new PersonInBatchModel {
+                        responsrClient.Persons.Add(new PersonTransactionData {
                             CreatedAt = booking.CheckoutDate,
                             Variables = new Dictionary<string, string> {
                                 { "firstname", booking.FirstName },
@@ -160,7 +160,7 @@ namespace SendToResponsr
                 // var latestRetrievalTimestamp = DateTime.Now;
 
                 // Send the retrieved data to Responsr
-                var result = new PartnerIntegrationBatchModel(latestRetrievalTimestamp, responsrClients);
+                var result = new TransactionBatch(latestRetrievalTimestamp, responsrClients);
                 return result;
             }
         }
