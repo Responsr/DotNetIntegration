@@ -75,9 +75,9 @@ namespace SendToResponsr
 
                 // Gets a list of all clients currently using Responsr, this is populated by responsr
                 // We will not send data to clients who are using Responsr in demo mode only.
-                var responsrClients = new List<ClientTransactionsData>();
+                var responsrClients = new List<ClientTransactions>();
                 foreach (var client in clients.Where(x => !x.IsInDemoMode)) {
-                    var responsrClient = new ClientTransactionsData { ClientId = client.ClientId, Persons = new List<PersonTransactionData>() };
+                    var responsrClient = new ClientTransactions { ClientId = client.ClientId, Persons = new List<PersonTransaction>() };
 
                     _logger.LogInformation("Found client: " + client.ClientId);
 
@@ -118,7 +118,7 @@ namespace SendToResponsr
                         _logger.LogInformation("Found booking: " + booking.BookingReference);
 
                         // Add a person to be sent to responsr
-                        responsrClient.Persons.Add(new PersonTransactionData {
+                        responsrClient.Persons.Add(new PersonTransaction {
                             CreatedAt = booking.CheckoutDate,
                             Variables = new Dictionary<string, string> {
                                 { "firstname", booking.FirstName },
