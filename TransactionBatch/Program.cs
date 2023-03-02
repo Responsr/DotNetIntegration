@@ -50,14 +50,14 @@ namespace SendToResponsr
             _logger = new Logger(ConfigurationManager.AppSettings["LogFolderPath"]);
             _debug = (args.Contains("help") || args.Contains("debug") || args.Contains("verbose") || ConfigurationManager.AppSettings["Debug"].ToLower() == "true") ? true : false;
 
-            // Create a batchrunner to send data to Responsr, this part is standard
-            var batchRunner = new TransactionBatchRunner(new BatchRetriever(), new Guid(ConfigurationManager.AppSettings["PartnerKey"]), ConfigurationManager.AppSettings["LogFolderPath"], ResponsrEnvironment.Production);
-            batchRunner.Run();
+            // Create a runner to send data to Responsr, this part is standard
+            var runner = new TransactionBatchRunner(new TransactionBatchRetriever(), new Guid(ConfigurationManager.AppSettings["PartnerKey"]), ConfigurationManager.AppSettings["LogFolderPath"], ResponsrEnvironment.Production);
+            runner.Run();
 
             Debug("Application finished");
         }
 
-        private class BatchRetriever : ITransactionBatchRetriever
+        private class TransactionBatchRetriever : ITransactionBatchRetriever
         {
             public TransactionBatch Retrieve(DateTime recommendedBatchRetrievalTimestamp, List<ClientInfo> clients, List<VariableInfo> variables)
             {
