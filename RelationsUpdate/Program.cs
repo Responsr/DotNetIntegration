@@ -32,7 +32,7 @@ using Dapper;
  *  
  */
 
-namespace SendToResponsr
+namespace SendRelationsUpdate
 {
     class Program
     {

@@ -32,7 +32,7 @@ using Dapper;
  *  
  */
 
-namespace SendToResponsr
+namespace SendTransactionBatch
 {
     class Program
     {

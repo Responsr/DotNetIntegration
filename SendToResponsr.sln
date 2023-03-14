@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionBatch", "TransactionBatch\TransactionBatch.csproj", "{DD45B382-C68F-4CAA-BE19-7C4A21FCF723}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SendTransactionBatch", "TransactionBatch\SendTransactionBatch.csproj", "{DD45B382-C68F-4CAA-BE19-7C4A21FCF723}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelationsUpdate", "RelationsUpdate\RelationsUpdate.csproj", "{2EA5FCFD-8E5B-4ACB-B601-3B66A26C2107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SendRelationsUpdate", "RelationsUpdate\SendRelationsUpdate.csproj", "{2EA5FCFD-8E5B-4ACB-B601-3B66A26C2107}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
