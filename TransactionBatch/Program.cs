@@ -59,7 +59,7 @@ namespace SendTransactionBatch
 
         private class TransactionBatchRetriever : ITransactionBatchRetriever
         {
-            public TransactionBatch Retrieve(DateTime recommendedBatchRetrievalTimestamp, List<ClientInfo> clients, List<VariableInfo> variables)
+            public TransactionBatch Retrieve(DateTime recommendedBatchRetrievalTimestamp, List<ClientInfo> clients, List<VariableInfo> variables, Logger logger, ResponsrLogger responsrLogger)
             {
                 /*          -----------------------------------------------------------------------------------------
                  *          THIS IS A SAMPLE IMPLEMENTATION OF INTEGRATION TO YOUR SYSTEM

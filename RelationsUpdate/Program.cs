@@ -59,7 +59,7 @@ namespace SendRelationsUpdate
 
         private class RelationsUpdateRetriever : IRelationsUpdateRetriever
         {
-            public RelationsUpdate Retrieve(List<ClientInfo> clients, List<VariableInfo> variables)
+            public RelationsUpdate Retrieve(List<ClientInfo> clients, List<VariableInfo> variables, Logger logger, ResponsrLogger responsrLogger, OauthProvider oauthProvider)
             {
                 /*          -----------------------------------------------------------------------------------------
                  *          THIS IS A SAMPLE IMPLEMENTATION OF INTEGRATION TO YOUR SYSTEM
